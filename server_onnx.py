@@ -6,7 +6,7 @@ from transformers import AutoTokenizer
 
 app = FastAPI()
 
-# Configure ONNX session
+
 so = ort.SessionOptions()
 so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
 

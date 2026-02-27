@@ -5,7 +5,7 @@ from transformers import AutoTokenizer
 
 model_path = "distilbert.onnx"
 
-# Session options
+
 so = ort.SessionOptions()
 so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
 
@@ -16,14 +16,14 @@ tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 text = "Let the dragon rides again on the winds of time"
 inputs = tokenizer(text, return_tensors="np")
 
-# Warmup
+
 for _ in range(10):
     session.run(None, {
         "input_ids": inputs["input_ids"],
         "attention_mask": inputs["attention_mask"]
     })
 
-# Benchmark
+
 runs = 100
 start = time.time()
 
